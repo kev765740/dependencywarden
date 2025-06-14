@@ -1,0 +1,155 @@
+CONTEXT:
+DependencyWarden is a full-stack SaaS platform aimed at software teams and security-conscious organizations. Its core value proposition is to continuously monitor code repositories for outdated, vulnerable, or license-incompatible dependencies, generate actionable alerts, and—where possible—automatically remediate issues via pull requests. The platform also provides compliance reports, threat-hunting insights, executive analytics, and an AI-powered “Security Copilot” for on-demand guidance. Our goal is to deliver a polished, reliable, enterprise-grade product that developers will pay to use.
+
+TARGET USERS & KEY BENEFITS:
+• DevSecOps Engineers and CTOs need peace of mind that their production code is free of critical vulnerabilities and license violations.  
+• Engineering Managers want summarized dashboards and ROI metrics to justify security spend.  
+• Developers appreciate automated PRs for quick fixes and an AI assistant that explains “why” and “how” to remediate.
+
+PRODUCTION REQUIREMENTS:
+• All API endpoints must return live, accurate data from GitHub, OSV, NPM Registry, Stripe, SendGrid/SMTP, Slack, etc.  
+• UI/UX must be responsive (mobile + desktop), consistent (Tailwind styling), and intuitive (clear CTAs and feedback messages).  
+• Security, performance, and reliability: JWT sessions must be secure; database queries should be optimized; scheduled jobs must run without failure.  
+• Error handling and logging: all failures should surface meaningful messages in the UI and report to Sentry (or equivalent).
+
+DEEP DIVE TASKS:
+
+1. DASHBOARD DATA INTEGRITY  
+   • Audit every widget on `/dashboard`: total repositories, active alerts, critical issues, last scan timestamps. Confirm each calls the correct endpoint and displays real database metrics.  
+   • Fix any missing or stale data: new repositories (added via `/dashboard/add-repo`) must trigger an immediate scan job (background queue) and populate their stats on the dashboard without manual refresh.  
+   • Ensure historical data (e.g., trend graphs over 7/30/90 days) queries correctly from the scans table and handles zero-data scenarios gracefully (show “No data yet” message).
+
+2. SECURITY DASHBOARD (VULNERABILITIES & LICENSES)  
+   • For each tab (Vulnerabilities, License Changes, Threat Timeline), verify the frontend issues the correct REST calls:  
+      – `GET /api/v1/security/vulnerabilities?repo={id}`  
+      – `GET /api/v1/security/licenses?repo={id}`  
+      – `GET /api/v1/security/threat-timeline?repo={id}`  
+   • Confirm the OSV and NPM Registry integrations return up-to-date vulnerability and license info. If any API keys are misconfigured, log a clear error and prompt the user to reconfigure in Settings.  
+   • Validate that clicking on a vulnerability in the list opens the alert detail modal showing: dependency name, installed version, vulnerable range, CVE link, remediation advice, and affected files (via file scan).  
+   • If any queries fail (e.g., 403, 404, or timeout), implement retry logic or show a user-friendly error (“Unable to fetch vulnerabilities. Please try again.”).
+
+3. REPOSITORY MANAGEMENT & AUTO-SCAN MECHANISM  
+   • New repos added via `/dashboard/add-repo` must appear immediately under “Your Repositories” with a status badge (“Scanning…”). Confirm the backend enqueues a scan job with `node-cron` or background queue and updates status to “Complete” when done.  
+   • Existing repos that failed to scan previously (due to missing tokens or parse errors) should retry on page load or via a “Retry Scan” button. If a repo lacks a valid `package.json`, show “Scan Failed: No package.json detected.”  
+   • Ensure private repos (requiring `GITHUB_TOKEN`) can be cloned and scanned. Use `git clone` with the token embedded in the URL securely. If cloning fails, show “Permission denied – Please check your GitHub token.”  
+   • Review the scan logic: iterate through `package.json`, gather dependencies, call OSV and NPM APIs, insert/update `dependencies`, `alerts`, and `vulnerabilities` tables. Cover edge cases (monorepos with multiple `package.json`, lockfiles only, architectures without `npm` projects).
+
+4. WORKFLOWS & POLICY ENGINE  
+   • On `/security/workflows`, the “Create Policy” form must send a `POST /api/v1/policies` with JSON payload: `{ name, ruleType, parameters… }`. Verify the server saves policies in `policies` table, and the front end refreshes the policy list automatically.  
+   • When a policy is created (e.g., “Block GPL-3.0 license”), ensure it appears in the policy list and is enforced on subsequent scans: repos with conflicting licenses should be flagged under “Policy Violations.”  
+   • If “Create Workflow” did not appear or save, inspect console/network logs for validation errors or permission issues. Fix front-end validation or back-end schema mismatches. Ensure CRUD endpoints for policies (`GET /api/v1/policies`, `PUT /api/v1/policies/{id}`, `DELETE /api/v1/policies/{id}`) are complete and tested.
+
+5. ENTERPRISE SECURITY MODULE  
+   • Audit `/enterprise/security`: verify endpoints like `GET /api/v1/enterprise/devices`, `GET /api/v1/enterprise/risk-scores`, `POST /api/v1/enterprise/alerts` return live data.  
+   • Mock device entries or connect to your zero-trust engine to confirm “Device Trust Scoring” works (trusted/untrusted classification). Display trust scores on a table with “Device Name, Last Seen, Trust Score” and color-coded indicators (green/yellow/red).  
+   • Check for missing or incorrect fields—if risk score is miscalculated, fix the hazard severity formula in `server/advancedRiskScoring.ts`.  
+   • Ensure threat-hunting timeline (`GET /api/v1/threat/timeline?since=…`) fetches audit logs (e.g., user logins, scan anomalies) and displays them chronologically with timestamp, event type, description.
+
+6. AI SECURITY COPILOT  
+   • Remove the duplicate Copilot entry in the sidebar—only one “Security Copilot” link should exist.  
+   • Enhance Copilot to behave like a conversational chatbot:  
+      – Integrate OpenAI’s ChatCompletion API with a system prompt that sets context (“You are DependencyWarden’s Security Copilot. Provide concise, actionable advice on dependency vulnerabilities, license issues, compliance, and threat hunting.”).  
+      – When a user clicks “Ask Copilot” on an alert, send:  
+      ```
+      {
+        model: "gpt-4o-mini",
+        prompt: "Explain how to fix the issue: [alert title] in repository [repo name]. Include code examples and best practices."
+      }
+      ```  
+      – Support follow-up questions by maintaining a conversation history in memory or DB for that user.  
+      – Validate that Copilot answers are accurate: test with known CVEs like lodash@4.17.20. If the answer is off-topic or incorrect, adjust the prompt template or use `functions` in OpenAI API to fetch structured data.  
+   • Ensure Copilot appears as a floating chat button on all pages. When clicked, it should open a drawer/modal with a chat UI that scrolls, shows timestamps, and supports multiline input.  
+
+7. SBOM GENERATION  
+   • On `/sbom`, clicking “Generate SBOM” should call `POST /api/v1/sbom` with `{ repoId }`. The back-end should run a tool (e.g., `@cyclonedx/builder`) to produce a SBOM in JSON or XML and save it to `sboms` table.  
+   • Once complete, the SBOM record should appear in “Recent SBOMs” list, with columns: “Repo Name, Format (SPDX/XML), Created At, Download Link.”  
+   • If the SBOM fails (e.g., missing `package-lock.json`), the API should return `400 Bad Request` with message “Cannot generate SBOM: no lockfile found.” Display that error in the UI.  
+   • Test with a small sample repo (`npm init`) to confirm output.
+
+8. AUTO-FIX PULL REQUESTS  
+   • In the alert details modal, the “Auto-Fix PR” button should execute:  
+      – `POST /api/v1/auto-fix?repoId={}&alertId={}`  
+      – Server clones the repo (with `GITHUB_TOKEN`), creates a new branch `fix/{dep-name}-{timestamp}`, updates `package.json` version or patches code, commits with message “Auto-fix: patch [dep-name] to [new-version] for CVE [CVE-ID]”, and pushes to GitHub.  
+      – Server calls GitHub’s REST API to open a PR: `{ title, body, head: branch, base: defaultBranch }`.  
+      – UI should show a link to the real GitHub PR (e.g., `https://github.com/org/repo/pull/1234`).  
+      – If any step fails (merge conflict, permission denied), catch that and show “Auto-Fix failed: [error]”.  
+   • Test with a repo you own; confirm PR appears with correct diff.  
+
+9. TEAM MANAGEMENT  
+   • On `/teams`, the “Create Team” form should call `POST /api/v1/teams` with `{ name, ownerId }`.  
+   • After creation, it should call `POST /api/v1/teams/{teamId}/invite` with `{ email }`.  
+   • Email invite should be sent via SendGrid/SMTP with a magic link or signup invite.  
+   • When invited user clicks link, they should join the team and see shared repositories.  
+   • If any API call returns a validation error (e.g., invalid email), show a user-friendly message.  
+   • Fix any broken front-end logic that prevented “Create Team” or invites from working.  
+
+10. API INTEGRATIONS & DEPENDENCY INJECTION  
+   • Review all `.env` references (are any keys missing or misnamed?).  
+   • Test `GET /api/v1/github/repos?user={}` returns the correct list of user’s GitHub repos.  
+   • Test NPM Registry integration: verify `GET https://registry.npmjs.org/[package]/latest` returns license and version info, and the back end correctly parses that.  
+   • Test Stripe integration:  
+      – `GET /api/v1/stripe/products` should list pricing tiers.  
+      – `POST /api/v1/stripe/checkout-session` with `{ priceId, userId }` should return a `$sessionUrl`.  
+      – Webhook handler (`POST /api/v1/stripe/webhook`) must verify signature and update user’s subscription status.  
+      – Billing page must reflect subscription state (`user.plan`).  
+      – If any call fails, display “Payment service currently unavailable.”  
+
+11. EXECUTIVE ANALYTICS  
+   • On `/analytics`, confirm the page calls `GET /api/v1/analytics/summary`.  
+   • Ensure the returned JSON includes `{ totalScans, totalAlerts, avgTimeToFix, monthlySavings }`.  
+   • Render charts (bar chart for monthly alerts, line chart for scans over time).  
+   • Allow filtering by date range (e.g., `?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`).  
+   • Test that “Upgrade Plan” button triggers Stripe flow if user is Free tier.  
+
+12. BILLING & SUBSCRIPTION MANAGEMENT  
+   • Verify `/billing` shows correct user plan and pricing tiers.  
+   • If user is Free: display “Upgrade to Pro” CTA.  
+   • If user is Pro: display “Current Plan: Pro”, “Next Billing Date: …”, and “Cancel Subscription” button.  
+   • Test upgrading via Stripe’s test card (4242 4242 4242 4242) transitions user to Pro and grants full features (unlimited repos, custom policies, etc.).  
+   • Test downgrading or canceling subscription updates user record and disables Pro features (e.g., >3 repos blocked, policy creation disabled).  
+
+13. REFERRALS FEATURE  
+   • On `/referrals`, confirm `GET /api/v1/referrals?user={}` returns `{ referralCode, referredCount, bonusEarned }`.  
+   • Generate a referral URL (e.g., `https://app.domain.com/signup?ref=XYZ`).  
+   • If a new user signs up with that code, increment `referredCount` for the referrer.  
+   • Display the updated count in real time.  
+   • Fix any broken logic where referral data isn’t showing or updating.  
+
+14. SETTINGS & ACCOUNT MANAGEMENT  
+   • On `/settings`, ensure fields exist for:  
+      – Profile info: `name`, `email`, `password` (with change password logic).  
+      – Notification preferences: toggles for “Email Alerts”, “Slack Alerts”, “Webhooks”.  
+      – Slack webhook URL input (validates URL format).  
+      – GitHub token input (validates correct PAT format).  
+   • When user updates settings, call `PUT /api/v1/users/{userId}/settings` and reflect changes immediately.  
+   • If any field fails validation (e.g., invalid URL), show an inline error.  
+
+15. UI/UX POLISH & RESPONSIVENESS  
+   • Use Tailwind CSS to ensure:  
+      – Consistent font sizes, colors, spacing (2xl rounding, soft shadows, p-2 padding).  
+      – Dark/light theme toggle in header (persist user preference).  
+      – Responsive nav: collapse to hamburger on <768px, show sidebar on desktop.  
+   • Ensure all buttons have hover/active states.  
+   • Add loading spinners on long-running actions (scan, SBOM generation, PR creation).  
+   • Implement 404 page for unknown routes and error pages for 500 errors.  
+
+16. PERFORMANCE & SECURITY HARDENING  
+   • Audit backend code for common vulnerabilities (SQL injection, XSS).  
+   • Ensure all inputs are validated/sanitized.  
+   • Add Helmet middleware (`helmet()`) to set security headers (HSTS, CSP, XSS protection).  
+   • Implement rate limiting on critical endpoints:  
+      – Auth: max 10 requests / 15 min per IP  
+      – Scan: max 5 requests / hour per user  
+   • Test slow or large repo scans and optimize memory usage (stream parsing, pagination).  
+
+17. FINAL SUMMARY & REPORT  
+   • After all fixes, return a summarized report:  
+      – List of features verified and fixed (e.g., “Auto-Fix PR: Now opening real PRs on GitHub; fixed missing branch creation.”).  
+      – Any remaining minor issues or TODOs.  
+      – Confirmation that all endpoints return live data, UI is responsive, and no errors exist.  
+
+TREAT THIS AS A ONE-SHOT PRODUCTION SWEEP. Do not save any checkpoints until all items above have been validated and fixed. At the end, provide a final readiness status: “Production-Ready” or “Issues Remaining: [list].”  
+
+---
+
+**End of Prompt**  

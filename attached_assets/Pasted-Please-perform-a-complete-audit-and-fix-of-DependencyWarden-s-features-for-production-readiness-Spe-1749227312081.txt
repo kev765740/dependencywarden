@@ -1,0 +1,62 @@
+Please perform a complete audit and fix of DependencyWarden’s features for production readiness. Specifically:
+
+1. **Dashboard Data Fetching**  
+   - Verify every section on the dashboard is correctly querying and displaying live data.  
+   - New repositories (and existing ones) must be auto-scanned on addition—ensure the scan function is triggered and results appear immediately.
+
+2. **Security Dashboard**  
+   - Check that all tabs/endpoints (e.g., Vulnerabilities, License Changes, Threat Timeline) return real, up-to-date data instead of placeholders.  
+   - Fix any broken API calls so security metrics populate properly.
+
+3. **Repository Management**  
+   - Fix the “Add Repository” feature: new repos should appear in the list immediately and be scanned without manual intervention.  
+   - Existing repos that weren’t scanned should be picked up on page load or via a background job—ensure scan jobs enqueue correctly.
+
+4. **Workflow & Policy Engine**  
+   - On the Security Workflows tab, creating a new workflow or policy must register instantly and show up in the UI.  
+   - If “Create Policy” isn’t appearing in the dashboard, debug the policy-creation endpoint and front-end logic so policies are saved and listed.
+
+5. **Enterprise Security Module**  
+   - Audit every endpoint under “Enterprise → Security”: confirm data queries return correct results (e.g., device trust scores, risk alerts).  
+   - Fix any missing or incorrect fields so enterprise customers see valid information.
+
+6. **AI Security Copilot**  
+   - Remove duplicate Copilot entries in the sidebar; keep only one.  
+   - Enhance its chatbot capabilities: when users ask questions about specific vulnerabilities, dependencies, or fix instructions, Copilot should respond with accurate, context-aware guidance.  
+   - Ensure Copilot can carry a conversation (multi-step follow-up) and deeply analyze code or alerts to give valid advice.
+
+7. **SBOM Generation**  
+   - The “Generate SBOM” feature should produce a valid Software Bill of Materials in at least one framework (e.g., SPDX JSON or CycloneDX XML).  
+   - Fix the backend logic so SBOMs appear in the “Recent SBOMs” list upon generation.
+
+8. **Auto-Fix Pull Requests**  
+   - Confirm that selecting “Auto-Fix PR” on a vulnerability generates a real GitHub PR with correct diff changes (version bump or patch).  
+   - If any part of the auto-fix flow (branch creation, commit, PR open) is failing, repair it end-to-end.
+
+9. **Team Management**  
+   - Debug the “Create Team” feature: users should be able to add teammates via email or invite link.  
+   - Fix any server or front-end errors preventing team creation, and ensure team members see shared repos and alert notifications.
+
+10. **API Integrations**  
+    - Audit all external API integrations (GitHub, OSV, NPM registry, Stripe, SendGrid/SMTP, Slack) to confirm data is fetched and posted correctly.  
+    - Fix any broken endpoints or misconfigured environment variables that block live data flow.
+
+11. **Executive Analytics**  
+    - Check that the “Executive Analytics” page shows real, aggregated data (scan counts, alert trends, ROI metrics).  
+    - Enable plan upgrade flow from this page—users should be able to click “Upgrade Plan” and complete the Stripe checkout.
+
+12. **Billing & Subscription Management**  
+    - Verify the billing page shows the correct plan (Free/Pro), pricing tiers, and current subscription status.  
+    - Ensure users can upgrade, downgrade, and cancel subscriptions via Stripe.  
+    - Fix any UI or API errors that prevent successful payment.
+
+13. **Referrals System**  
+    - On the “Referrals” page, confirm referral links are generated per user and referral counts/bonuses display correctly.  
+    - Fix broken stats or links so users see accurate referral data.
+
+14. **Settings & Account Management**  
+    - In “Settings,” ensure all user information fields (name, email, password change, notification preferences) are present and editable.  
+    - Confirm Slack webhook, email preferences, and GitHub token fields save properly and affect notifications as intended.  
+    - Address any missing or broken form validation and feedback messages.
+
+After completing these fixes, provide a summary of which features were updated, how each issue was resolved, and confirm that all core functionality now works with real data and no errors. Treat this as a one-shot full production sweep—do not save checkpoints until every item above is validated and fixed. ```

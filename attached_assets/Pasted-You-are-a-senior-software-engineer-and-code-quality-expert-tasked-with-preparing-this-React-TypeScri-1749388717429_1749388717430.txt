@@ -1,0 +1,74 @@
+You are a senior software engineer and code quality expert tasked with preparing this React TypeScript application for production deployment. Your job is to review, analyze, and implement the required fixes as outlined in the checklist below.
+
+🔍 Project Overview
+This is a modern React + TypeScript + Tailwind CSS application using React Query , Sentry , PostHog , and Wouter for routing. It includes multiple components such as dashboards, modals, feedback widgets, and UI libraries like shadcn/ui.
+
+📄 Task Summary
+Implement all critical and high-priority fixes from the following categories:
+
+Security Improvements
+Replace localStorage usage with secure token management (e.g., HTTP-only cookies or secure session storage).
+Add input sanitization and validation.
+Implement CSRF protection for API calls.
+Validate environment variables and configuration files.
+Sanitize any user-generated content before rendering it.
+Error Handling & Resilience
+Add granular error boundaries around major sections/components.
+Implement proper fallback UIs for failed operations.
+Improve error logging and integrate with Sentry.
+Add retry logic with exponential backoff for failed API requests.
+Performance Optimization
+Implement lazy loading for non-critical routes and components.
+Use React.memo, useMemo, and useCallback where appropriate.
+Optimize bundle size by removing unused imports and enabling tree-shaking.
+Replace hardcoded values with constants/config files.
+TypeScript & Type Safety
+Fix unsafe type assertions (!, any).
+Add comprehensive interfaces and types for all APIs and props.
+Add runtime validation for API responses using Zod or Yup.
+Accessibility (WCAG 2.1 AA)
+Add ARIA labels, roles, and descriptions to interactive elements.
+Ensure keyboard navigation works across all components.
+Add focus indicators and trap focus in modal dialogs.
+Verify color contrast ratios meet accessibility standards.
+Testing & Documentation
+Add unit tests for core logic and components.
+Set up integration/E2E testing for critical flows.
+Document components with JSDoc and Storybook if applicable.
+Add test IDs and mock external dependencies like localStorage/Sentry.
+Build & Deployment Readiness
+Set up environment variable management (.env files).
+Add feature flags for different environments.
+Configure performance monitoring (Core Web Vitals).
+Set up analytics tracking (PostHog).
+✅ Implementation Guidelines
+Maintain consistent code style and follow best practices.
+Write clean, modular, and maintainable code.
+Do not introduce breaking changes unless necessary.
+Update documentation/comments wherever needed.
+Test each fix locally or via automated tests when possible.
+Keep pull request/commit messages clear and descriptive.
+🚀 Deliverables
+After applying the fixes, ensure the following deliverables are ready:
+
+All critical security issues resolved
+Comprehensive error handling and boundaries
+Proper type safety and runtime validation
+Improved accessibility attributes
+Better performance with memoization and lazy loading
+Added unit/integration tests
+Updated documentation
+Environment setup and configuration management
+🛠️ Tools You Can Use
+Zod / Yup : For schema validation
+React Testing Library / Jest : For testing
+Storybook / Chromatic : For component documentation
+eslint / prettier : For code formatting and linting
+husky / lint-staged : For pre-commit hooks
+📦 Bonus Tasks (Optional)
+Implement a design system for reusable components.
+Add PWA support for offline functionality.
+Integrate advanced analytics events for key actions.
+Set up CI/CD pipeline with GitHub Actions or similar.
+🧾 Final Note
+The foundation of the app is solid, but it needs significant improvements in security , error resilience , performance , and accessibility before going into production. Prioritize critical issues first , then move to high and medium priority items.

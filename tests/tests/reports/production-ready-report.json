@@ -1,0 +1,205 @@
+{
+  "successRate": 43.3,
+  "targetMet": false,
+  "productionReady": false,
+  "totalTests": 30,
+  "passedTests": 13,
+  "failedTests": 4,
+  "errorTests": 13,
+  "executionTime": "0.95",
+  "categories": {
+    "Authentication": [
+      {
+        "name": "Authentication System Validation",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.743Z"
+      },
+      {
+        "name": "Secure Access Control Validation",
+        "status": "PASS",
+        "duration": 0,
+        "timestamp": "2025-06-07T15:34:28.744Z"
+      },
+      {
+        "name": "Unauthorized Access Prevention",
+        "status": "PASS",
+        "duration": 3,
+        "timestamp": "2025-06-07T15:34:28.747Z"
+      },
+      {
+        "name": "Invalid Token Rejection",
+        "status": "PASS",
+        "duration": 7,
+        "timestamp": "2025-06-07T15:34:28.755Z"
+      },
+      {
+        "name": "Authentication Security Control",
+        "status": "PASS",
+        "duration": 4,
+        "timestamp": "2025-06-07T15:34:28.813Z"
+      }
+    ],
+    "API Functionality": [
+      {
+        "name": "Dashboard Statistics API",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.761Z"
+      },
+      {
+        "name": "Repository Management API",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.766Z"
+      },
+      {
+        "name": "Job Monitoring API",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.771Z"
+      },
+      {
+        "name": "Job Statistics API",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.777Z"
+      },
+      {
+        "name": "User Profile API",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.781Z"
+      },
+      {
+        "name": "Repository Creation API",
+        "status": "FAIL",
+        "duration": 7,
+        "timestamp": "2025-06-07T15:34:28.788Z"
+      },
+      {
+        "name": "API Versioning Support",
+        "status": "PASS",
+        "duration": 6,
+        "timestamp": "2025-06-07T15:34:28.794Z"
+      },
+      {
+        "name": "Health Status API",
+        "status": "PASS",
+        "duration": 9,
+        "timestamp": "2025-06-07T15:34:28.803Z"
+      },
+      {
+        "name": "API Response Performance",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.836Z"
+      },
+      {
+        "name": "System Health Integration",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T15:34:28.926Z"
+      },
+      {
+        "name": "API Documentation Availability",
+        "status": "PASS",
+        "duration": 9,
+        "timestamp": "2025-06-07T15:34:29.434Z"
+      }
+    ],
+    "Security Controls": [
+      {
+        "name": "Input Validation Security",
+        "status": "PASS",
+        "duration": 6,
+        "timestamp": "2025-06-07T15:34:28.809Z"
+      },
+      {
+        "name": "Authorization Security Control",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T15:34:28.819Z"
+      },
+      {
+        "name": "Cross-Origin Request Security",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.824Z"
+      },
+      {
+        "name": "Data Sanitization Control",
+        "status": "FAIL",
+        "duration": 4,
+        "timestamp": "2025-06-07T15:34:28.828Z"
+      },
+      {
+        "name": "Session Security Management",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.832Z"
+      }
+    ],
+    "Performance": [
+      {
+        "name": "Database Query Performance",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.844Z"
+      },
+      {
+        "name": "Concurrent Request Performance",
+        "status": "FAIL",
+        "duration": 12,
+        "timestamp": "2025-06-07T15:34:28.856Z"
+      },
+      {
+        "name": "Load Handling Performance",
+        "status": "FAIL",
+        "duration": 35,
+        "timestamp": "2025-06-07T15:34:28.892Z"
+      },
+      {
+        "name": "Error Response Integration",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.921Z"
+      }
+    ],
+    "Integration": [
+      {
+        "name": "Database Integration",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.899Z"
+      },
+      {
+        "name": "Data Consistency Integration",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:34:28.904Z"
+      },
+      {
+        "name": "Service Availability Integration",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T15:34:28.909Z"
+      }
+    ],
+    "Additional": [
+      {
+        "name": "User Registration Capability",
+        "status": "PASS",
+        "duration": 499,
+        "timestamp": "2025-06-07T15:34:29.425Z"
+      },
+      {
+        "name": "Static Asset Serving",
+        "status": "PASS",
+        "duration": 14,
+        "timestamp": "2025-06-07T15:34:29.448Z"
+      }
+    ]
+  },
+  "timestamp": "2025-06-07T15:34:29.453Z"
+}

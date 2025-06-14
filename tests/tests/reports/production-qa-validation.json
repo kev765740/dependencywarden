@@ -1,0 +1,244 @@
+{
+  "timestamp": "2025-06-08T14:27:46.274Z",
+  "duration": 251,
+  "summary": {
+    "totalTests": 32,
+    "passedTests": 2,
+    "failedTests": 30,
+    "successRate": 6,
+    "isProductionReady": false
+  },
+  "functionalityTests": [
+    {
+      "name": "User Registration",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.083Z"
+    },
+    {
+      "name": "Valid User Login",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.087Z"
+    },
+    {
+      "name": "Invalid Login Rejection",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.103Z"
+    },
+    {
+      "name": "Token Validation",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.107Z"
+    },
+    {
+      "name": "Secure Logout",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.111Z"
+    },
+    {
+      "name": "Public Route: /health",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.116Z"
+    },
+    {
+      "name": "Public Route: /api/version",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.125Z"
+    },
+    {
+      "name": "Protected Route Security: /api/repositories",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.127Z"
+    },
+    {
+      "name": "Protected Route Security: /api/stats",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.130Z"
+    },
+    {
+      "name": "Protected Route Security: /api/notifications",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.133Z"
+    },
+    {
+      "name": "Authenticated Access: /api/repositories",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.137Z"
+    },
+    {
+      "name": "Authenticated Access: /api/stats",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.140Z"
+    },
+    {
+      "name": "Authenticated Access: /api/notifications",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.144Z"
+    },
+    {
+      "name": "Network Timeout Handling",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.150Z"
+    },
+    {
+      "name": "Malformed Request Handling",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.155Z"
+    },
+    {
+      "name": "Rate Limiting Protection",
+      "status": "FAIL",
+      "category": "Functionality",
+      "timestamp": "2025-06-08T14:27:46.189Z"
+    },
+    {
+      "name": "API Response Time: /health",
+      "status": "FAIL",
+      "category": "Performance",
+      "timestamp": "2025-06-08T14:27:46.247Z"
+    },
+    {
+      "name": "API Response Time: /api/version",
+      "status": "FAIL",
+      "category": "Performance",
+      "timestamp": "2025-06-08T14:27:46.252Z"
+    },
+    {
+      "name": "API Response Time: /api/stats",
+      "status": "FAIL",
+      "category": "Performance",
+      "timestamp": "2025-06-08T14:27:46.255Z"
+    },
+    {
+      "name": "Concurrent Request Handling",
+      "status": "FAIL",
+      "category": "Performance",
+      "timestamp": "2025-06-08T14:27:46.273Z"
+    },
+    {
+      "name": "Bundle Size Analysis",
+      "status": "PASS",
+      "category": "Performance",
+      "timestamp": "2025-06-08T14:27:46.273Z"
+    }
+  ],
+  "securityTests": [
+    {
+      "name": "Secure Token Storage",
+      "status": "PASS",
+      "category": "Security",
+      "severity": "LOW",
+      "timestamp": "2025-06-08T14:27:46.190Z"
+    },
+    {
+      "name": "CSRF Token Generation",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Security",
+      "severity": "MEDIUM",
+      "timestamp": "2025-06-08T14:27:46.195Z"
+    },
+    {
+      "name": "Token Expiration Handling",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.198Z"
+    },
+    {
+      "name": "XSS Protection: <script>alert(\"XSS\")...",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.205Z"
+    },
+    {
+      "name": "XSS Protection: <img src=\"x\" onerror...",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.207Z"
+    },
+    {
+      "name": "XSS Protection: javascript:alert(\"XS...",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.211Z"
+    },
+    {
+      "name": "SQL Injection Protection: '; DROP TABLE users;...",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.214Z"
+    },
+    {
+      "name": "SQL Injection Protection: ' UNION SELECT * FRO...",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.218Z"
+    },
+    {
+      "name": "SQL Injection Protection: ' OR 1=1 --...",
+      "status": "FAIL",
+      "category": "Security",
+      "severity": "HIGH",
+      "timestamp": "2025-06-08T14:27:46.226Z"
+    },
+    {
+      "name": "No Password Exposure",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Security",
+      "severity": "MEDIUM",
+      "timestamp": "2025-06-08T14:27:46.242Z"
+    },
+    {
+      "name": "Security Headers Present",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "category": "Security",
+      "severity": "MEDIUM",
+      "timestamp": "2025-06-08T14:27:46.244Z"
+    }
+  ],
+  "accessibilityIssues": [],
+  "performanceMetrics": [],
+  "recommendations": [
+    {
+      "priority": "Critical",
+      "category": "Deployment",
+      "message": "Fix all critical issues before production deployment"
+    },
+    {
+      "priority": "Critical",
+      "category": "Security",
+      "message": "Address 7 critical security vulnerabilities"
+    }
+  ]
+}

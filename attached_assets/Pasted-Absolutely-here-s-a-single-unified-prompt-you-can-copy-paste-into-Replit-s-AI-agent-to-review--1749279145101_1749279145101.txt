@@ -1,0 +1,124 @@
+Absolutely — here's a **single unified prompt** you can copy-paste into Replit's AI agent to review and test all **6 production-readiness steps** in one go:
+
+---
+
+### ✅ Replit AI Agent Prompt: Full Production Readiness Test for DependencyWarden
+
+````markdown
+🛠️ I need you to help me verify that my full-stack SaaS app "DependencyWarden" is production-ready. It includes GitHub repo scanning, Slack alerts, Stripe billing, OpenAI integration, and is built with React (Vite) + Express (Drizzle ORM).
+
+Please walk through and assist me with the following **6 production-readiness checks** in Replit:
+
+---
+
+## ✅ 1. Create Healthcheck Route
+
+In my Express backend (`server/index.ts` or wherever the main app is initialized), add:
+```ts
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
+});
+````
+
+Then verify it's accessible at:
+`https://<my-replit-url>.repl.co/healthz`
+
+---
+
+## ✅ 2. Check `.env.production.example`
+
+Make sure these environment variables are declared:
+
+```
+OPENAI_API_KEY=
+GITHUB_TOKEN=
+SLACK_WEBHOOK_URL=
+DATABASE_URL=
+STRIPE_SECRET_KEY=
+SENTRY_DSN=
+JWT_SECRET=
+SESSION_SECRET=
+SENDGRID_API_KEY=
+```
+
+If any are missing, help me add them with `TODO:` values.
+
+---
+
+## ✅ 3. Add and Run a Test Script
+
+Help me add a basic smoke test to verify the app has test support.
+
+In `package.json`:
+
+```json
+"scripts": {
+  "test": "tsx tests/index.test.ts || echo 'No tests implemented'"
+}
+```
+
+Create a file `tests/index.test.ts`:
+
+```ts
+console.log('Running smoke test...');
+console.assert(1 + 1 === 2, 'Basic math broken');
+```
+
+Then run:
+
+```bash
+npm run test
+```
+
+---
+
+## ✅ 4. Test Dockerfile
+
+If Docker is enabled in Replit, run:
+
+```bash
+docker build -t dependencywarden .
+docker run -p 3000:3000 dependencywarden
+```
+
+Confirm the app boots and `/healthz` works.
+
+---
+
+## ✅ 5. UI Manual Test
+
+In the frontend:
+
+* Log in
+* Add invalid GitHub token to trigger error
+* Trigger real success (e.g. connect repo)
+* Confirm:
+
+  * Success toasts or alerts show
+  * Errors are displayed and don't crash the app
+  * Loading states are shown when expected
+
+If error boundaries or toasts are missing, help me add them using shadcn/ui and Tailwind.
+
+---
+
+## ✅ 6. Test Stripe Integration (Test Mode)
+
+Use test key to trigger a test payment:
+
+* Card: `4242 4242 4242 4242`
+* Expiry: future date
+* CVC: 123
+
+Confirm webhook is handled and user access updates or logs payment.
+
+---
+
+✅ At the end, summarize if DependencyWarden passes all these checks or still has gaps before going live.
+
+```
+
+---
+
+You can paste this full prompt into Replit’s AI or break it into parts if needed. Would you like a version for **GitHub Actions CI/CD or database seed test** next?
+```

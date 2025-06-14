@@ -1,0 +1,31 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["jest", "node", "express", "supertest"],
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": [
+    "./**/*.ts",
+    "../src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+} 

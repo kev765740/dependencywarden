@@ -1,0 +1,116 @@
+# Production Readiness Deep Dive Tests
+
+## 1. Load Testing
+# Install artillery for load testing
+npm install -g artillery
+
+# Create load test config
+cat > load-test.yml << EOF
+config:
+  target: 'http://localhost:5000'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+scenarios:
+  - name: "API Load Test"
+    flow:
+      - get:
+          url: "/api/repositories"
+      - get:
+          url: "/api/vulnerabilities"
+      - post:
+          url: "/api/security-copilot/chat"
+          json:
+            message: "Test message"
+            vulnerability_id: "test"
+EOF
+
+# Run load test
+artillery run load-test.yml
+
+## 2. Security Testing
+# Test SQL injection
+curl -X POST http://localhost:5000/api/repositories \
+  -H "Content-Type: application/json" \
+  -d '{"name": "test'; DROP TABLE users; --"}'
+
+# Test XSS
+curl -X POST http://localhost:5000/api/security-copilot/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "<script>alert(\"XSS\")</script>"}'
+
+# Test authentication bypass
+curl -X GET http://localhost:5000/api/admin/users \
+  -H "Authorization: Bearer invalid_token"
+
+## 3. Database Stress Testing
+# Concurrent database operations
+for i in {1..50}; do
+  curl -X POST http://localhost:5000/api/vulnerabilities \
+    -H "Content-Type: application/json" \
+    -d '{"severity": "high", "description": "Test vuln '$i'"}' &
+done
+wait
+
+## 4. Memory Leak Detection
+# Monitor memory usage during sustained operation
+while true; do
+  ps aux | grep node | grep -v grep
+  sleep 5
+done
+
+## 5. Error Boundary Testing
+# Test malformed requests
+curl -X POST http://localhost:5000/api/security-copilot/chat \
+  -H "Content-Type: application/json" \
+  -d '{"invalid": "json structure"}'
+
+# Test large payload
+curl -X POST http://localhost:5000/api/security-copilot/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message": "'"$(head -c 10000 /dev/zero | tr '\0' 'A')"'"}'
+
+## 6. Database Recovery Testing
+# Simulate database connection issues
+# (Temporarily stop PostgreSQL service)
+sudo systemctl stop postgresql
+# Test application behavior
+curl http://localhost:5000/api/repositories
+# Restart database
+sudo systemctl start postgresql
+
+## 7. Performance Monitoring
+# Monitor key metrics during testing
+echo "=== Performance Metrics ==="
+echo "Memory Usage:"
+free -h
+echo "CPU Usage:"
+top -bn1 | grep "Cpu(s)"
+echo "Disk I/O:"
+iostat -x 1 1
+echo "Network Connections:"
+netstat -an | grep :5000 | wc -l
+
+## 8. Log Analysis
+# Check for error patterns
+tail -f server/logs/*.log | grep -E "(ERROR|FATAL|Exception)"
+
+## 9. Frontend Stress Testing
+# Open browser console and run:
+# for(let i=0; i<100; i++) { 
+#   fetch('/api/security-copilot/chat', {
+#     method: 'POST', 
+#     body: JSON.stringify({message: 'test ' + i}),
+#     headers: {'Content-Type': 'application/json'}
+#   }); 
+# }
+
+## 10. Real-world Scenario Testing
+# Simulate actual user workflows
+echo "Testing complete user journey..."
+# 1. Login
+# 2. Browse repositories
+# 3. Select vulnerability
+# 4. Chat with AI
+# 5. Generate report
+# 6. Logout

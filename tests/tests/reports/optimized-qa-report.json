@@ -1,0 +1,148 @@
+{
+  "successRate": 100,
+  "targetMet": true,
+  "totalTests": 21,
+  "passedTests": 21,
+  "failedTests": 0,
+  "errorTests": 0,
+  "executionTime": "3.36",
+  "categories": {
+    "Authentication": [
+      {
+        "name": "User Login Authentication",
+        "status": "PASS",
+        "duration": 471,
+        "timestamp": "2025-06-07T16:21:31.343Z"
+      },
+      {
+        "name": "Token-Based Access Control",
+        "status": "PASS",
+        "duration": 194,
+        "timestamp": "2025-06-07T16:21:31.537Z"
+      },
+      {
+        "name": "Invalid Authentication Rejection",
+        "status": "PASS",
+        "duration": 11,
+        "timestamp": "2025-06-07T16:21:31.548Z"
+      },
+      {
+        "name": "Authentication Requirement",
+        "status": "PASS",
+        "duration": 4,
+        "timestamp": "2025-06-07T16:21:32.015Z"
+      },
+      {
+        "name": "Authorization Token Validation",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T16:21:32.021Z"
+      }
+    ],
+    "API Endpoints": [
+      {
+        "name": "Dashboard Statistics API",
+        "status": "PASS",
+        "duration": 4,
+        "timestamp": "2025-06-07T16:21:31.553Z"
+      },
+      {
+        "name": "Repository Listing API",
+        "status": "PASS",
+        "duration": 53,
+        "timestamp": "2025-06-07T16:21:31.606Z"
+      },
+      {
+        "name": "Job Monitoring API",
+        "status": "PASS",
+        "duration": 53,
+        "timestamp": "2025-06-07T16:21:31.659Z"
+      },
+      {
+        "name": "Job Statistics API",
+        "status": "PASS",
+        "duration": 10,
+        "timestamp": "2025-06-07T16:21:31.670Z"
+      },
+      {
+        "name": "Repository Creation API",
+        "status": "PASS",
+        "duration": 186,
+        "timestamp": "2025-06-07T16:21:31.856Z"
+      },
+      {
+        "name": "API Response Time Performance",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T16:21:32.215Z"
+      }
+    ],
+    "Security Controls": [
+      {
+        "name": "Database Connectivity Validation",
+        "status": "PASS",
+        "duration": 53,
+        "timestamp": "2025-06-07T16:21:32.335Z"
+      },
+      {
+        "name": "Data Consistency Validation",
+        "status": "PASS",
+        "duration": 4,
+        "timestamp": "2025-06-07T16:21:32.339Z"
+      },
+      {
+        "name": "Service Availability Validation",
+        "status": "PASS",
+        "duration": 6,
+        "timestamp": "2025-06-07T16:21:32.349Z"
+      }
+    ],
+    "Performance": [
+      {
+        "name": "Concurrent Request Handling",
+        "status": "PASS",
+        "duration": 11,
+        "timestamp": "2025-06-07T16:21:32.226Z"
+      },
+      {
+        "name": "Database Query Performance",
+        "status": "PASS",
+        "duration": 51,
+        "timestamp": "2025-06-07T16:21:32.277Z"
+      }
+    ],
+    "Integration": [
+      {
+        "name": "User Registration Flow",
+        "status": "PASS",
+        "duration": 481,
+        "timestamp": "2025-06-07T16:21:30.870Z"
+      },
+      {
+        "name": "Input Sanitization Control",
+        "status": "PASS",
+        "duration": 155,
+        "timestamp": "2025-06-07T16:21:32.011Z"
+      },
+      {
+        "name": "Cross-Origin Request Handling",
+        "status": "PASS",
+        "duration": 189,
+        "timestamp": "2025-06-07T16:21:32.210Z"
+      },
+      {
+        "name": "Application Health Status",
+        "status": "PASS",
+        "duration": 3,
+        "timestamp": "2025-06-07T16:21:32.281Z"
+      },
+      {
+        "name": "Error Response Handling",
+        "status": "PASS",
+        "duration": 3,
+        "timestamp": "2025-06-07T16:21:32.342Z"
+      }
+    ]
+  },
+  "timestamp": "2025-06-07T16:21:32.353Z"
+}

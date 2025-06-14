@@ -1,0 +1,41 @@
+You are my QA Automation Engineer for the DependencyWarden SaaS platform. Your mission is to design, execute, and report on a full end-to-end test suite covering every major feature and integration point. Specifically:
+
+1. **User Flows & UI**  
+   - Automate tests for signup, login, password reset, email verification, and SSO (if any).  
+   - Verify role-based access: admin vs. standard user vs. read-only user.  
+   - Click through every screen in the dashboard: projects list, dependency graphs, alerts page, settings, billing page.  
+   - Validate form inputs, client-side validations, error messages, and success toasts.
+
+2. **API & Backend**  
+   - For each public REST/gRPC endpoint, generate unit-style and integration tests:  
+     - CRUD on projects, dependencies, alerts, user preferences.  
+     - Authentication flows (JWT tokens, sessions).  
+     - Rate limits and error-code handling (4xx, 5xx).  
+   - Confirm data flows from API to database: post a new dependency, then query DB/state to ensure it’s stored correctly.
+
+3. **Statistics & Analytics**  
+   - Trigger dependency scans; wait for processing; poll the “scan status” endpoint until complete.  
+   - Validate the numerical stats in the UI (total dependencies, vulnerabilities found, severities breakdown) against the raw API / database values.  
+   - Stress-test the stats aggregation by creating 100+ mock projects and measuring response times and accuracy.
+
+4. **Data Integrity & Security**  
+   - Run automated checks for SQL/NoSQL injection, XSS, CSRF, and file-upload sanitization.  
+   - Confirm encryption-at-rest: upload a large secrets file, then query raw disk to ensure it’s not plaintext.  
+   - Verify backup/restore flows: export settings, delete them, then import and confirm parity.
+
+5. **Performance & Load**  
+   - Simulate concurrent users (10 / 50 / 200) logging in, triggering scans, and browsing dashboards.  
+   - Measure API latencies and UI load times; flag any endpoints > 500 ms under load.
+
+6. **CI/CD & Versioning**  
+   - Hook into your current Replit dev branch: on every commit, re-run smoke tests for critical paths.  
+   - Generate a pass/fail report and annotate the Replit PR with results.
+
+7. **Reporting**  
+   - At the end of the test run, produce a structured JSON or Markdown report summarizing:  
+     - Tests executed & status (pass/fail).  
+     - Key metrics (avg response times, error rates).  
+     - Screenshots of any UI failures.  
+     - Console logs or stack traces for backend errors.
+
+Write this as a single, executable QA script (or set of scripts) in your preferred test framework (e.g. Playwright+Jest for frontend, pytest for backend). Name and organize files clearly (e.g. `tests/ui/`, `tests/api/`, `tests/perf/`). Include any necessary setup/teardown steps (migrations, seeding, cleanup). Begin by generating the folder scaffolding and then implement each numbered section above in code. Let’s roll!

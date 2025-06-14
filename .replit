@@ -1,0 +1,79 @@
+modules = ["nodejs-20", "web", "bash", "postgresql-16"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+
+[workflows]
+runButton = "Production Start"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "Start Application"
+author = 43549617
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+
+[[workflows.workflow]]
+name = "Production Start"
+author = 43549617
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"
+
+[[workflows.workflow]]
+name = "Production Validation"
+author = 43549617
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node tests/production-qa-validation.js"
+
+[[ports]]
+localPort = 3000
+externalPort = 3001
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 3000

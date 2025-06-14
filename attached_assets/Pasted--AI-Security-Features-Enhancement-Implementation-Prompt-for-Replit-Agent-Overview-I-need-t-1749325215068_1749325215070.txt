@@ -1,0 +1,89 @@
+# AI Security Features Enhancement - Implementation Prompt for Replit Agent
+
+## Overview
+I need to enhance my existing AI security features with improved reliability, better error handling, and enhanced user experience. The current implementation has several critical issues that need to be addressed.
+
+## Current Issues to Fix
+1. **Missing API request handler** - `apiRequest()` function is undefined causing runtime errors
+2. **Poor error handling** - No fallback mechanisms when AI services fail
+3. **Basic UI/UX** - Missing loading states, confidence indicators, and user feedback
+4. **No conversation context** - Each message is processed independently
+5. **Limited reasoning capabilities** - Simple request/response without proper context building
+
+## Files to Update/Create
+
+### 1. Create API Request Handler
+**File:** `client/src/utils/apiRequest.ts`
+- Implement robust API request function with retry logic
+- Add exponential backoff for failed requests
+- Include proper error handling and TypeScript types
+- Add request/response logging for debugging
+
+### 2. Enhanced AI Engine 
+**File:** `server/aiSecurityEngine.ts` (replace existing)
+- Implement fallback mechanisms when AI services are unavailable
+- Add conversation context and memory
+- Improve prompt engineering for better security analysis
+- Add structured response parsing
+- Implement confidence scoring
+- Add rule-based fallback responses
+
+### 3. Improved Frontend Component
+**File:** `client/src/pages/ai-security.tsx` (enhance existing)
+- Add proper loading states and typing indicators
+- Implement confidence indicators for AI responses
+- Add quick question suggestions
+- Improve message display with better formatting
+- Add connection status indicator
+- Implement auto-scroll for messages
+- Add vulnerability selection sidebar with better UX
+
+### 4. Additional Requirements
+- Add proper TypeScript interfaces for all data structures
+- Implement input validation and sanitization
+- Add proper error boundaries in React components
+- Include accessibility features (ARIA labels, keyboard navigation)
+- Add responsive design for mobile devices
+
+## Implementation Priority
+1. **Critical (Fix first):** API request handler and basic error handling
+2. **High:** Enhanced AI engine with fallbacks and better prompting
+3. **Medium:** Improved UI/UX features and conversation context
+4. **Low:** Additional polish and accessibility features
+
+## Technical Specifications
+- **Frontend:** React with TypeScript, TailwindCSS for styling
+- **Backend:** Node.js with TypeScript
+- **AI Services:** OpenAI GPT-3.5-turbo and Google Gemini as fallback
+- **Database:** Existing schema for storing remediation suggestions
+- **State Management:** React Query for server state, React hooks for local state
+
+## Key Features to Implement
+1. **Robust Error Handling:** Multiple fallback layers, graceful degradation
+2. **Context Awareness:** Maintain conversation history and vulnerability context  
+3. **User Experience:** Loading states, confidence indicators, quick questions
+4. **Performance:** Request caching, optimistic updates, efficient re-renders
+5. **Security:** Input validation, rate limiting considerations, secure API calls
+
+## Testing Requirements
+- Test all error scenarios (network failures, API limits, invalid responses)
+- Verify fallback mechanisms work correctly
+- Test conversation flow and context preservation
+- Validate TypeScript types and interfaces
+- Test responsive design on different screen sizes
+
+## Code Quality Standards
+- Use TypeScript strict mode
+- Implement proper error boundaries
+- Add JSDoc comments for complex functions
+- Follow React best practices (useCallback, useMemo where appropriate)
+- Ensure all async operations have proper error handling
+
+## Success Criteria
+- Zero runtime errors related to undefined functions
+- Graceful handling of AI service outages
+- Improved user engagement with quick questions and context
+- Sub-2-second response times for cached/fallback responses
+- Proper TypeScript coverage with no `any` types
+
+Please implement these changes step by step, starting with the critical fixes first. Make sure to test each component as you build it and ensure backward compatibility with existing functionality.

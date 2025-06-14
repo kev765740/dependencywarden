@@ -1,0 +1,388 @@
+{
+  "summary": {
+    "totalTests": 52,
+    "passedTests": 9,
+    "failedTests": 23,
+    "errorTests": 20,
+    "successRate": "17.3%",
+    "executionTime": "2.35s",
+    "timestamp": "2025-06-08T18:31:07.587Z"
+  },
+  "categories": {
+    "UI": {
+      "total": 14,
+      "passed": 9,
+      "failed": 2,
+      "errors": 3,
+      "successRate": "64.3%"
+    },
+    "Security": {
+      "total": 9,
+      "passed": 0,
+      "failed": 5,
+      "errors": 4,
+      "successRate": "0.0%"
+    },
+    "API": {
+      "total": 9,
+      "passed": 0,
+      "failed": 6,
+      "errors": 3,
+      "successRate": "0.0%"
+    },
+    "Integration": {
+      "total": 6,
+      "passed": 0,
+      "failed": 3,
+      "errors": 3,
+      "successRate": "0.0%"
+    },
+    "Analytics": {
+      "total": 5,
+      "passed": 0,
+      "failed": 3,
+      "errors": 2,
+      "successRate": "0.0%"
+    },
+    "Performance": {
+      "total": 9,
+      "passed": 0,
+      "failed": 4,
+      "errors": 5,
+      "successRate": "0.0%"
+    }
+  },
+  "performance": {
+    "averageResponseTime": "39.00ms",
+    "slowestOperation": {
+      "operation": "50 Concurrent Users",
+      "responseTime": "65ms"
+    },
+    "fastestOperation": {
+      "operation": "10 Concurrent Users",
+      "responseTime": "13ms"
+    },
+    "metricsCount": 3
+  },
+  "security": {
+    "totalSecurityTests": 9,
+    "passedSecurityTests": 0,
+    "securityScore": "0.0%",
+    "vulnerabilitiesFound": 5
+  },
+  "failedTests": [
+    {
+      "name": "User Registration",
+      "category": "UI",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.273Z"
+    },
+    {
+      "name": "User Login - Session",
+      "category": "UI",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.284Z"
+    },
+    {
+      "name": "JWT Token Authentication",
+      "category": "UI",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.288Z"
+    },
+    {
+      "name": "admin User Registration",
+      "category": "Security",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.299Z"
+    },
+    {
+      "name": "readonly User Registration",
+      "category": "Security",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.302Z"
+    },
+    {
+      "name": "Admin User Access",
+      "category": "Security",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.305Z"
+    },
+    {
+      "name": "Read-Only User Restrictions",
+      "category": "Security",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.307Z"
+    },
+    {
+      "name": "Repository Form Validation",
+      "category": "UI",
+      "status": "FAIL",
+      "duration": 3,
+      "timestamp": "2025-06-08T18:31:05.332Z"
+    },
+    {
+      "name": "User Profile Form Validation",
+      "category": "UI",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:05.334Z"
+    },
+    {
+      "name": "Create Repository",
+      "category": "API",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.337Z"
+    },
+    {
+      "name": "Read Repositories",
+      "category": "API",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.341Z"
+    },
+    {
+      "name": "Get Dependencies",
+      "category": "API",
+      "status": "FAIL",
+      "duration": 3,
+      "timestamp": "2025-06-08T18:31:05.344Z"
+    },
+    {
+      "name": "Get Security Alerts",
+      "category": "API",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:05.346Z"
+    },
+    {
+      "name": "Get Current User",
+      "category": "API",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.349Z"
+    },
+    {
+      "name": "Logout User",
+      "category": "API",
+      "status": "FAIL",
+      "duration": 3,
+      "timestamp": "2025-06-08T18:31:05.352Z"
+    },
+    {
+      "name": "Rate Limiting",
+      "category": "API",
+      "status": "FAIL",
+      "duration": 42,
+      "timestamp": "2025-06-08T18:31:05.394Z"
+    },
+    {
+      "name": "404 Error Handling",
+      "category": "API",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:05.397Z"
+    },
+    {
+      "name": "401 Unauthorized Handling",
+      "category": "API",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:05.400Z"
+    },
+    {
+      "name": "Database Data Flow",
+      "category": "Integration",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:05.404Z"
+    },
+    {
+      "name": "Trigger Dependency Scan",
+      "category": "Analytics",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:05.406Z"
+    },
+    {
+      "name": "Monitor Scan Status",
+      "category": "Analytics",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:05.409Z"
+    },
+    {
+      "name": "Scan Completion Check",
+      "category": "Analytics",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.415Z"
+    },
+    {
+      "name": "Vulnerability Stats Accuracy",
+      "category": "Analytics",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.418Z"
+    },
+    {
+      "name": "Severity Breakdown Validation",
+      "category": "Analytics",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.420Z"
+    },
+    {
+      "name": "Large Dataset Stats Performance",
+      "category": "Performance",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.422Z"
+    },
+    {
+      "name": "SQL Injection Protection",
+      "category": "Security",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.425Z"
+    },
+    {
+      "name": "XSS Protection",
+      "category": "Security",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.427Z"
+    },
+    {
+      "name": "CSRF Protection",
+      "category": "Security",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.429Z"
+    },
+    {
+      "name": "Encryption at Rest",
+      "category": "Security",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.432Z"
+    },
+    {
+      "name": "Data Transmission Security",
+      "category": "Security",
+      "status": "FAIL",
+      "duration": 4,
+      "timestamp": "2025-06-08T18:31:07.436Z"
+    },
+    {
+      "name": "Settings Export",
+      "category": "Integration",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.438Z"
+    },
+    {
+      "name": "Settings Import",
+      "category": "Integration",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.441Z"
+    },
+    {
+      "name": "10 Concurrent Users",
+      "category": "Performance",
+      "status": "FAIL",
+      "duration": 14,
+      "timestamp": "2025-06-08T18:31:07.455Z"
+    },
+    {
+      "name": "25 Concurrent Users",
+      "category": "Performance",
+      "status": "FAIL",
+      "duration": 39,
+      "timestamp": "2025-06-08T18:31:07.494Z"
+    },
+    {
+      "name": "50 Concurrent Users",
+      "category": "Performance",
+      "status": "FAIL",
+      "duration": 65,
+      "timestamp": "2025-06-08T18:31:07.560Z"
+    },
+    {
+      "name": "/api/stats Latency",
+      "category": "Performance",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.565Z"
+    },
+    {
+      "name": "/api/repositories Latency",
+      "category": "Performance",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.567Z"
+    },
+    {
+      "name": "/api/auth/user Latency",
+      "category": "Performance",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.570Z"
+    },
+    {
+      "name": "/api/jobs/recent Latency",
+      "category": "Performance",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.572Z"
+    },
+    {
+      "name": "Static Assets Load Time",
+      "category": "Performance",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.575Z"
+    },
+    {
+      "name": "System Health Check",
+      "category": "Integration",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.582Z"
+    },
+    {
+      "name": "Database Connectivity",
+      "category": "Integration",
+      "status": "ERROR",
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "timestamp": "2025-06-08T18:31:07.584Z"
+    },
+    {
+      "name": "API Version Info",
+      "category": "Integration",
+      "status": "FAIL",
+      "duration": 2,
+      "timestamp": "2025-06-08T18:31:07.587Z"
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "Security",
+      "priority": "Critical",
+      "message": "5 security tests failed. Immediate attention required."
+    },
+    {
+      "category": "API",
+      "priority": "Medium",
+      "message": "6 API tests failed. Review endpoint implementations."
+    }
+  ]
+}

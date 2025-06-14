@@ -1,0 +1,245 @@
+{
+  "summary": {
+    "totalTests": 25,
+    "passedTests": 1,
+    "failedTests": 24,
+    "successRate": "4.0",
+    "duration": 303,
+    "timestamp": "2025-06-06T20:59:42.847Z"
+  },
+  "performance": [
+    {
+      "endpoint": "/health",
+      "responseTime": 42,
+      "status": 0
+    },
+    {
+      "endpoint": "/api",
+      "responseTime": 22,
+      "status": 0
+    },
+    {
+      "endpoint": "/api/stats",
+      "responseTime": 5,
+      "status": 0
+    },
+    {
+      "endpoint": "/api/nonexistent",
+      "responseTime": 9,
+      "status": 0
+    },
+    {
+      "endpoint": "/health",
+      "responseTime": 3,
+      "status": 0
+    }
+  ],
+  "results": [
+    {
+      "category": "FAIL",
+      "testName": "Health Check",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 42,
+      "timestamp": "2025-06-06T20:59:42.589Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "API Base",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 22,
+      "timestamp": "2025-06-06T20:59:42.614Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Database Connection",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 5,
+      "timestamp": "2025-06-06T20:59:42.619Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "404 Handling",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 9,
+      "timestamp": "2025-06-06T20:59:42.628Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Invalid Method",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 3,
+      "timestamp": "2025-06-06T20:59:42.631Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Rate Limiting Protection",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 42,
+      "timestamp": "2025-06-06T20:59:42.673Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "CORS Configuration",
+      "passed": true,
+      "error": null,
+      "duration": 13,
+      "timestamp": "2025-06-06T20:59:42.686Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "User Registration",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.689Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "User Login",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.693Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "JWT Authentication",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.699Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Repository Creation: Express Test Repo",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.706Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Repository Creation: React Test Repo",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.715Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Repository Creation: Vue Test Repo",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.720Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Repository Listing",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.728Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Security Alerts",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.743Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Security Workflows",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.749Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Dashboard Stats",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.756Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Job Stats",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.762Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Recent Jobs",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.774Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "AI Security Copilot",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.804Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Response Time: /api/stats",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.813Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Response Time: /api/repositories",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.816Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Response Time: /api/notifications",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.822Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Response Time: /api/jobs/recent",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.830Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Response Time: /api/auth/user",
+      "passed": false,
+      "error": "connect ECONNREFUSED 127.0.0.1:5000",
+      "duration": 0,
+      "timestamp": "2025-06-06T20:59:42.839Z"
+    }
+  ],
+  "metadata": {
+    "platform": "DependencyWarden",
+    "auditVersion": "1.0.0",
+    "environment": "development",
+    "baseUrl": "http://localhost:5000"
+  }
+}

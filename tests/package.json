@@ -1,0 +1,39 @@
+{
+  "name": "dependencywarden-qa-automation",
+  "version": "1.0.0",
+  "description": "Comprehensive QA automation suite for DependencyWarden SaaS platform",
+  "type": "module",
+  "scripts": {
+    "test": "node qa-automation-runner.js",
+    "test:comprehensive": "node comprehensive-qa-suite.js",
+    "test:api": "node api/endpoint-tests.js",
+    "test:performance": "node perf/load-tests.js",
+    "test:security": "node security/security-tests.js",
+    "test:integration": "node integration/ci-cd-tests.js",
+    "test:ui": "playwright test ui/playwright-tests.js",
+    "test:quick": "node comprehensive-qa-suite.js --quick",
+    "report": "open reports/master-qa-report.html || xdg-open reports/master-qa-report.html",
+    "clean": "rm -rf reports/* || rmdir /s reports",
+    "setup": "npm install && playwright install"
+  },
+  "keywords": [
+    "qa",
+    "automation",
+    "testing",
+    "dependencywarden",
+    "end-to-end",
+    "security",
+    "performance",
+    "api"
+  ],
+  "dependencies": {
+    "axios": "^1.6.0",
+    "@playwright/test": "^1.40.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

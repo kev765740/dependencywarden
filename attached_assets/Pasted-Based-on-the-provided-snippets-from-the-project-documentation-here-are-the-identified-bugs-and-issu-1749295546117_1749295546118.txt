@@ -1,0 +1,28 @@
+Based on the provided snippets from the project documentation, here are the identified bugs and issues that need to be addressed:
+SBOM Generation:
+The “Generate SBOM” feature should produce a valid Software Bill of Materials in at least one framework (e.g., SPDX JSON or CycloneDX XML).
+The backend logic needs to be fixed so that SBOMs appear in the “Recent SBOMs” list upon generation.
+Auto-Fix Pull Requests:
+Selecting “Auto-Fix PR” on a vulnerability should generate a real GitHub PR with correct diff changes (version bump or patch).
+If any part of the auto-fix flow (branch creation, commit, PR open) is failing, it needs to be repaired end-to-end.
+Team Management:
+The “Create Team” feature should allow users to add teammates via email or invite link.
+Any server or front-end errors preventing team creation need to be fixed, ensuring team members can see shared repositories and alert notifications.
+API Integrations:
+All external API integrations (GitHub, OSV, NPM registry, Stripe, SendGrid/SMTP, Slack) should be audited to confirm data is fetched and posted correctly.
+Any broken endpoints or misconfigured environment variables that block live data flow need to be fixed.
+Executive Analytics:
+The “Executive Analytics” page should show real, aggregated data (scan counts, alert trends, ROI metrics).
+The plan upgrade flow from this page should be enabled, allowing users to click “Upgrade Plan” and complete the Stripe checkout.
+Billing & Subscription Management:
+The billing page should show the correct plan (Free/Pro), pricing tiers, and current subscription status.
+Users should be able to upgrade, downgrade, and cancel subscriptions via Stripe.
+Any UI or API errors that prevent successful payment need to be fixed.
+Referrals System:
+On the “Referrals” page, referral links should be generated per user, and referral counts/bonuses should display correctly.
+Any broken stats or links should be fixed so users see accurate referral data.
+Settings & Account Management:
+In “Settings,” all user information fields (name, email, password change, notification preferences) should be present and editable.
+Slack webhook, email preferences, and GitHub token fields should save properly and affect notifications as intended.
+Any missing or broken form validation and feedback messages need to be addressed.
+After addressing these issues, a summary of the updates and resolutions should be provided, confirming that all core functionality works with real data and no errors. This should be treated as a comprehensive production sweep, ensuring that no checkpoints are saved until every item is validated and fixed.

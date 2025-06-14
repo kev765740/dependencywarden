@@ -1,0 +1,21 @@
+[vite] connecting...
+[vite] connected.
+Analytics disabled to prevent runtime errors
+Sentry DSN not configured, skipping Sentry initialization
+Warning: Each child in a list should have a unique &quot;key&quot; prop.
+
+Check the render method of `Pricing`. See https://reactjs.org/link/warning-keys for more information.
+    at Pricing (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/src/pages/pricing.tsx:42:35)
+    at Route (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=96aecdb8:323:16)
+    at Switch (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=96aecdb8:379:17)
+    at div
+    at main
+    at div
+    at SecurityCopilotProvider (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/src/contexts/SecurityCopilotContext.tsx:20:43)
+    at Router (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/src/App.tsx?v=BKxeqPXHpqctMssQKWmWg:67:16)
+    at Provider (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-OXZDJRWN.js?v=96aecdb8:38:15)
+    at TooltipProvider (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=96aecdb8:64:5)
+    at AuthProvider (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/src/hooks/use-auth.tsx:26:32)
+    at QueryClientProvider (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=96aecdb8:2805:3)
+    at App
+    at ErrorBoundary (https://4859e45b-95cc-4786-a2ab-4dc14c96598d-00-3abi8qtosr5w8.picard.replit.dev/src/components/ErrorBoundary.tsx?v=BKxeqPXHpqctMssQKWmWg:10:5)

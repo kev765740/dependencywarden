@@ -1,0 +1,325 @@
+{
+  "successRate": 92,
+  "targetMet": false,
+  "totalTests": 25,
+  "passedTests": 23,
+  "failedTests": 1,
+  "errorTests": 1,
+  "executionTime": "7.90",
+  "categories": {
+    "Authentication": [
+      {
+        "name": "User Registration Validation",
+        "status": "PASS",
+        "duration": 519,
+        "timestamp": "2025-06-07T15:33:11.728Z"
+      },
+      {
+        "name": "User Login Validation",
+        "status": "ERROR",
+        "error": "Request failed with status code 401",
+        "timestamp": "2025-06-07T15:33:11.778Z"
+      },
+      {
+        "name": "Invalid Token Rejection",
+        "status": "PASS",
+        "duration": 3,
+        "timestamp": "2025-06-07T15:33:12.011Z"
+      },
+      {
+        "name": "User Profile API Validation",
+        "status": "FAIL",
+        "duration": 4,
+        "timestamp": "2025-06-07T15:33:12.330Z"
+      },
+      {
+        "name": "Authentication Security Validation",
+        "status": "PASS",
+        "duration": 10,
+        "timestamp": "2025-06-07T15:33:12.495Z"
+      }
+    ],
+    "API Endpoints": [
+      {
+        "name": "Statistics API Validation",
+        "status": "PASS",
+        "duration": 4,
+        "timestamp": "2025-06-07T15:33:12.016Z"
+      },
+      {
+        "name": "Repository API Validation",
+        "status": "PASS",
+        "duration": 48,
+        "timestamp": "2025-06-07T15:33:12.064Z"
+      },
+      {
+        "name": "Job Monitoring API Validation",
+        "status": "PASS",
+        "duration": 68,
+        "timestamp": "2025-06-07T15:33:12.132Z"
+      },
+      {
+        "name": "Job Statistics API Validation",
+        "status": "PASS",
+        "duration": 47,
+        "timestamp": "2025-06-07T15:33:12.180Z"
+      },
+      {
+        "name": "Repository Creation API Validation",
+        "status": "PASS",
+        "duration": 145,
+        "timestamp": "2025-06-07T15:33:12.326Z"
+      },
+      {
+        "name": "API Versioning Validation",
+        "status": "PASS",
+        "duration": 23,
+        "timestamp": "2025-06-07T15:33:14.887Z"
+      }
+    ],
+    "Security Controls": [
+      {
+        "name": "Authenticated Access Validation",
+        "status": "PASS",
+        "duration": 223,
+        "timestamp": "2025-06-07T15:33:12.001Z"
+      },
+      {
+        "name": "Input Security Validation",
+        "status": "PASS",
+        "duration": 155,
+        "timestamp": "2025-06-07T15:33:12.485Z"
+      },
+      {
+        "name": "Authorization Security Validation",
+        "status": "PASS",
+        "duration": 8,
+        "timestamp": "2025-06-07T15:33:12.503Z"
+      },
+      {
+        "name": "Cross-Origin Security Validation",
+        "status": "PASS",
+        "duration": 2215,
+        "timestamp": "2025-06-07T15:33:14.718Z"
+      },
+      {
+        "name": "Response Time Performance Validation",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T15:33:14.723Z"
+      },
+      {
+        "name": "Concurrent Load Performance Validation",
+        "status": "PASS",
+        "duration": 16,
+        "timestamp": "2025-06-07T15:33:14.739Z"
+      },
+      {
+        "name": "Database Performance Validation",
+        "status": "PASS",
+        "duration": 49,
+        "timestamp": "2025-06-07T15:33:14.788Z"
+      },
+      {
+        "name": "Application Health Integration Validation",
+        "status": "PASS",
+        "duration": 3,
+        "timestamp": "2025-06-07T15:33:14.792Z"
+      },
+      {
+        "name": "Database Integration Validation",
+        "status": "PASS",
+        "duration": 55,
+        "timestamp": "2025-06-07T15:33:14.847Z"
+      },
+      {
+        "name": "Data Consistency Integration Validation",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T15:33:14.852Z"
+      },
+      {
+        "name": "Error Handling Integration Validation",
+        "status": "PASS",
+        "duration": 5,
+        "timestamp": "2025-06-07T15:33:14.857Z"
+      },
+      {
+        "name": "Service Availability Integration Validation",
+        "status": "PASS",
+        "duration": 7,
+        "timestamp": "2025-06-07T15:33:14.864Z"
+      },
+      {
+        "name": "Session Management Validation",
+        "status": "PASS",
+        "duration": 7,
+        "timestamp": "2025-06-07T15:33:14.895Z"
+      }
+    ],
+    "Performance": [],
+    "Integration": [],
+    "Additional Validation": [
+      {
+        "name": "Unauthenticated Access Rejection",
+        "status": "PASS",
+        "duration": 6,
+        "timestamp": "2025-06-07T15:33:12.007Z"
+      }
+    ]
+  },
+  "productionReady": false,
+  "timestamp": "2025-06-07T15:33:14.897Z",
+  "testResults": [
+    {
+      "name": "User Registration Validation",
+      "status": "PASS",
+      "duration": 519,
+      "timestamp": "2025-06-07T15:33:11.728Z"
+    },
+    {
+      "name": "User Login Validation",
+      "status": "ERROR",
+      "error": "Request failed with status code 401",
+      "timestamp": "2025-06-07T15:33:11.778Z"
+    },
+    {
+      "name": "Authenticated Access Validation",
+      "status": "PASS",
+      "duration": 223,
+      "timestamp": "2025-06-07T15:33:12.001Z"
+    },
+    {
+      "name": "Unauthenticated Access Rejection",
+      "status": "PASS",
+      "duration": 6,
+      "timestamp": "2025-06-07T15:33:12.007Z"
+    },
+    {
+      "name": "Invalid Token Rejection",
+      "status": "PASS",
+      "duration": 3,
+      "timestamp": "2025-06-07T15:33:12.011Z"
+    },
+    {
+      "name": "Statistics API Validation",
+      "status": "PASS",
+      "duration": 4,
+      "timestamp": "2025-06-07T15:33:12.016Z"
+    },
+    {
+      "name": "Repository API Validation",
+      "status": "PASS",
+      "duration": 48,
+      "timestamp": "2025-06-07T15:33:12.064Z"
+    },
+    {
+      "name": "Job Monitoring API Validation",
+      "status": "PASS",
+      "duration": 68,
+      "timestamp": "2025-06-07T15:33:12.132Z"
+    },
+    {
+      "name": "Job Statistics API Validation",
+      "status": "PASS",
+      "duration": 47,
+      "timestamp": "2025-06-07T15:33:12.180Z"
+    },
+    {
+      "name": "Repository Creation API Validation",
+      "status": "PASS",
+      "duration": 145,
+      "timestamp": "2025-06-07T15:33:12.326Z"
+    },
+    {
+      "name": "User Profile API Validation",
+      "status": "FAIL",
+      "duration": 4,
+      "timestamp": "2025-06-07T15:33:12.330Z"
+    },
+    {
+      "name": "Input Security Validation",
+      "status": "PASS",
+      "duration": 155,
+      "timestamp": "2025-06-07T15:33:12.485Z"
+    },
+    {
+      "name": "Authentication Security Validation",
+      "status": "PASS",
+      "duration": 10,
+      "timestamp": "2025-06-07T15:33:12.495Z"
+    },
+    {
+      "name": "Authorization Security Validation",
+      "status": "PASS",
+      "duration": 8,
+      "timestamp": "2025-06-07T15:33:12.503Z"
+    },
+    {
+      "name": "Cross-Origin Security Validation",
+      "status": "PASS",
+      "duration": 2215,
+      "timestamp": "2025-06-07T15:33:14.718Z"
+    },
+    {
+      "name": "Response Time Performance Validation",
+      "status": "PASS",
+      "duration": 5,
+      "timestamp": "2025-06-07T15:33:14.723Z"
+    },
+    {
+      "name": "Concurrent Load Performance Validation",
+      "status": "PASS",
+      "duration": 16,
+      "timestamp": "2025-06-07T15:33:14.739Z"
+    },
+    {
+      "name": "Database Performance Validation",
+      "status": "PASS",
+      "duration": 49,
+      "timestamp": "2025-06-07T15:33:14.788Z"
+    },
+    {
+      "name": "Application Health Integration Validation",
+      "status": "PASS",
+      "duration": 3,
+      "timestamp": "2025-06-07T15:33:14.792Z"
+    },
+    {
+      "name": "Database Integration Validation",
+      "status": "PASS",
+      "duration": 55,
+      "timestamp": "2025-06-07T15:33:14.847Z"
+    },
+    {
+      "name": "Data Consistency Integration Validation",
+      "status": "PASS",
+      "duration": 5,
+      "timestamp": "2025-06-07T15:33:14.852Z"
+    },
+    {
+      "name": "Error Handling Integration Validation",
+      "status": "PASS",
+      "duration": 5,
+      "timestamp": "2025-06-07T15:33:14.857Z"
+    },
+    {
+      "name": "Service Availability Integration Validation",
+      "status": "PASS",
+      "duration": 7,
+      "timestamp": "2025-06-07T15:33:14.864Z"
+    },
+    {
+      "name": "API Versioning Validation",
+      "status": "PASS",
+      "duration": 23,
+      "timestamp": "2025-06-07T15:33:14.887Z"
+    },
+    {
+      "name": "Session Management Validation",
+      "status": "PASS",
+      "duration": 7,
+      "timestamp": "2025-06-07T15:33:14.895Z"
+    }
+  ]
+}

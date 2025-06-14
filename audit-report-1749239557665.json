@@ -1,0 +1,245 @@
+{
+  "summary": {
+    "totalTests": 25,
+    "passedTests": 22,
+    "failedTests": 3,
+    "successRate": "88.0",
+    "duration": 2507,
+    "timestamp": "2025-06-06T19:52:37.665Z"
+  },
+  "performance": [
+    {
+      "endpoint": "/health",
+      "responseTime": 54,
+      "status": 200
+    },
+    {
+      "endpoint": "/api",
+      "responseTime": 9,
+      "status": 200
+    },
+    {
+      "endpoint": "/api/stats",
+      "responseTime": 7,
+      "status": 401
+    },
+    {
+      "endpoint": "/api/nonexistent",
+      "responseTime": 5,
+      "status": 200
+    },
+    {
+      "endpoint": "/health",
+      "responseTime": 8,
+      "status": 200
+    }
+  ],
+  "results": [
+    {
+      "category": "PASS",
+      "testName": "Health Check",
+      "passed": true,
+      "error": null,
+      "duration": 54,
+      "timestamp": "2025-06-06T19:52:35.215Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "API Base",
+      "passed": true,
+      "error": null,
+      "duration": 9,
+      "timestamp": "2025-06-06T19:52:35.226Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Database Connection",
+      "passed": true,
+      "error": null,
+      "duration": 7,
+      "timestamp": "2025-06-06T19:52:35.233Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "404 Handling",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 5,
+      "timestamp": "2025-06-06T19:52:35.239Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "Invalid Method",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 8,
+      "timestamp": "2025-06-06T19:52:35.247Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Rate Limiting Protection",
+      "passed": true,
+      "error": null,
+      "duration": 56,
+      "timestamp": "2025-06-06T19:52:35.304Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "CORS Configuration",
+      "passed": true,
+      "error": null,
+      "duration": 42,
+      "timestamp": "2025-06-06T19:52:35.346Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "User Registration",
+      "passed": true,
+      "error": null,
+      "duration": 1074,
+      "timestamp": "2025-06-06T19:52:36.420Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "User Login",
+      "passed": true,
+      "error": null,
+      "duration": 393,
+      "timestamp": "2025-06-06T19:52:36.813Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "JWT Authentication",
+      "passed": true,
+      "error": null,
+      "duration": 3,
+      "timestamp": "2025-06-06T19:52:36.816Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Repository Creation: Express Test Repo",
+      "passed": true,
+      "error": null,
+      "duration": 86,
+      "timestamp": "2025-06-06T19:52:36.902Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Repository Creation: React Test Repo",
+      "passed": true,
+      "error": null,
+      "duration": 63,
+      "timestamp": "2025-06-06T19:52:36.965Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Repository Creation: Vue Test Repo",
+      "passed": true,
+      "error": null,
+      "duration": 165,
+      "timestamp": "2025-06-06T19:52:37.131Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Repository Listing",
+      "passed": true,
+      "error": null,
+      "duration": 79,
+      "timestamp": "2025-06-06T19:52:37.210Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Security Alerts",
+      "passed": true,
+      "error": null,
+      "duration": 64,
+      "timestamp": "2025-06-06T19:52:37.275Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Security Workflows",
+      "passed": true,
+      "error": null,
+      "duration": 3,
+      "timestamp": "2025-06-06T19:52:37.278Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Dashboard Stats",
+      "passed": true,
+      "error": null,
+      "duration": 197,
+      "timestamp": "2025-06-06T19:52:37.475Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Job Stats",
+      "passed": true,
+      "error": null,
+      "duration": 5,
+      "timestamp": "2025-06-06T19:52:37.480Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Recent Jobs",
+      "passed": true,
+      "error": null,
+      "duration": 59,
+      "timestamp": "2025-06-06T19:52:37.539Z"
+    },
+    {
+      "category": "FAIL",
+      "testName": "AI Security Copilot",
+      "passed": false,
+      "error": "Test returned false",
+      "duration": 5,
+      "timestamp": "2025-06-06T19:52:37.545Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Response Time: /api/stats",
+      "passed": true,
+      "error": null,
+      "duration": 7,
+      "timestamp": "2025-06-06T19:52:37.552Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Response Time: /api/repositories",
+      "passed": true,
+      "error": null,
+      "duration": 51,
+      "timestamp": "2025-06-06T19:52:37.603Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Response Time: /api/notifications",
+      "passed": true,
+      "error": null,
+      "duration": 4,
+      "timestamp": "2025-06-06T19:52:37.607Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Response Time: /api/jobs/recent",
+      "passed": true,
+      "error": null,
+      "duration": 52,
+      "timestamp": "2025-06-06T19:52:37.659Z"
+    },
+    {
+      "category": "PASS",
+      "testName": "Response Time: /api/auth/user",
+      "passed": true,
+      "error": null,
+      "duration": 2,
+      "timestamp": "2025-06-06T19:52:37.661Z"
+    }
+  ],
+  "metadata": {
+    "platform": "DependencyWarden",
+    "auditVersion": "1.0.0",
+    "environment": "development",
+    "baseUrl": "http://localhost:5000"
+  }
+}

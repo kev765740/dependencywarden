@@ -1,0 +1,65 @@
+YOU ARE NOW THE CODE AUDITOR FOR DEPENDENCYWARDEN.
+Your task is to systematically verify that every item from the uploaded checklists has been fully implemented and fixed .
+
+🧭 STEP 1: FULL STATUS CHECK
+Audit the entire codebase against these checklists:
+Security vulnerabilities (localStorage → secure storage, CSRF, XSS)
+Error boundaries (global vs. component-specific)
+Accessibility (WCAG 2.1 AA compliance, ARIA labels)
+TypeScript compilation errors
+Lazy loading and bundle optimization
+Input validation and sanitization
+Generate a prioritized task list with:
+✅ Fully resolved issues
+❌ Unresolved issues (with file paths)
+⚠️ Partially fixed issues
+🔧 STEP 2: VERIFY FIXES BY CATEGORY
+For each checklist item , provide:
+
+File path where the fix was implemented
+Code snippet showing the fix
+Checklist alignment (e.g., "Fixes: Security Checklist #1")
+Verification status (✅ Resolved / ❌ Pending)
+SECURITY VERIFICATION
+localStorage → secure token storage (check SecurityCopilotFloat.tsx)
+Input sanitization with DOMPurify (inputSanitization.ts)
+CSRF protection in API calls
+Environment variable validation
+XSS protection for dynamic content
+ERROR HANDLING VERIFICATION
+Component-specific error boundaries (App.tsx, pages/*.tsx)
+Fallback UIs for failed operations
+Retry logic with exponential backoff
+Sentry integration for error logging
+ACCESSIBILITY VERIFICATION (WCAG 2.1 AA)
+ARIA labels added to all interactive elements
+Keyboard navigation working
+Focus management (modals, dropdowns)
+Color contrast compliance
+TYPE SAFETY & PERFORMANCE VERIFICATION
+All any types replaced with interfaces
+React.memo/useMemo optimizations
+Lazy loading for routes (check App.tsx)
+Bundle size under 500KB gzipped
+📋 STEP 3: FINAL VERIFICATION REPORT
+Run npm run build and confirm zero TypeScript errors
+Test routing, lazy loading, and error boundaries manually
+Generate a final production readiness report with:
+✅ Passed categories (security, accessibility, etc.)
+🚫 Remaining issues
+📈 Final recommendation (Deploy / Do Not Deploy)
+Take screenshots only for major milestones (e.g., successful build, fixed accessibility).
+⚠️ RULES FOR AGENT
+DO NOT CLAIM COMPLETION until all critical issues are resolved
+Prioritize concrete code changes over vague suggestions
+Fix TypeScript errors before implementing new features
+Use tools/libs mentioned in checklists (e.g., Zod, React Query, Sentry)
+Document every change with file paths and code snippets
+✅ SUCCESS CRITERIA
+All security vulnerabilities patched
+Zero TypeScript compilation errors
+WCAG 2.1 AA compliance
+Component-specific error boundaries implemented
+Lazy loading functional for non-critical routes
+Comprehensive test coverage (>80%)
+Let me know your findings and begin verifying the outstanding issues now.

@@ -1,0 +1,286 @@
+// server/aiSecurityEngine.ts
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from "openai";
+import { db } from './db';
+import { aiRemediationSuggestions } from '@shared/schema';
+
+interface VulnerabilityContext {
+  cve?: string;
+  package?: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  description?: string;
+  affectedVersions?: string[];
+  patchedVersions?: string[];
+}
+
+interface ChatContext {
+  message: string;
+  vulnerability?: VulnerabilityContext;
+  conversationHistory?: Array<{role: 'user' | 'assistant', content: string}>;
+}
+
+interface AIResponse {
+  response: string;
+  confidence: number;
+  sources?: string[];
+  suggestions?: RemediationSuggestion[];
+  followUpQuestions?: string[];
+}
+
+class AISecurityEngine {
+  private genAI: GoogleGenerativeAI | null = null;
+  private openai: OpenAI | null = null;
+  private fallbackResponses: Map<string, string> = new Map();
+
+  constructor() {
+    this.initializeAIProviders();
+    this.initializeFallbackResponses();
+  }
+
+  private initializeAIProviders(): void {
+    try {
+      if (process.env.GOOGLE_API_KEY) {
+        this.genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+      }
+    } catch (error) {
+      console.warn('Google Gemini AI initialization failed:', error);
+    }
+
+    try {
+      if (process.env.OPENAI_API_KEY) {
+        this.openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      }
+    } catch (error) {
+      console.warn('OpenAI initialization failed:', error);
+    }
+  }
+
+  private initializeFallbackResponses(): void {
+    this.fallbackResponses.set('vulnerability_analysis', 
+      'Based on the vulnerability information provided, I recommend reviewing the official security advisories and applying the latest patches as soon as possible.');
+    
+    this.fallbackResponses.set('remediation_general',
+      'For security vulnerabilities, the general approach is: 1) Assess the impact, 2) Apply patches or updates, 3) Implement workarounds if patches aren\'t available, 4) Monitor for exploitation attempts.');
+    
+    this.fallbackResponses.set('best_practices',
+      'Security best practices include: keeping dependencies updated, implementing defense in depth, regular security audits, and maintaining an incident response plan.');
+  }
+
+  async processSecurityQuery(context: ChatContext): Promise<AIResponse> {
+    const { message, vulnerability, conversationHistory = [] } = context;
+    
+    try {
+      // Try primary AI providers
+      const response = await this.tryAIProviders(message, vulnerability, conversationHistory);
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      console.error('AI processing error:', error);
+    }
+
+    // Fallback to rule-based responses
+    return this.generateFallbackResponse(message, vulnerability);
+  }
+
+  private async tryAIProviders(
+    message: string, 
+    vulnerability?: VulnerabilityContext,
+    history: Array<{role: 'user' | 'assistant', content: string}> = []
+  ): Promise<AIResponse | null> {
+    const prompt = this.buildSecurityPrompt(message, vulnerability, history);
+    
+    // Try OpenAI first (generally more reliable for structured responses)
+    if (this.openai) {
+      try {
+        const response = await this.queryOpenAI(prompt);
+        if (response) return response;
+      } catch (error) {
+        console.warn('OpenAI request failed:', error);
+      }
+    }
+
+    // Try Google Gemini as fallback
+    if (this.genAI) {
+      try {
+        const response = await this.queryGemini(prompt);
+        if (response) return response;
+      } catch (error) {
+        console.warn('Gemini request failed:', error);
+      }
+    }
+
+    return null;
+  }
+
+  private buildSecurityPrompt(
+    message: string, 
+    vulnerability?: VulnerabilityContext,
+    history: Array<{role: 'user' | 'assistant', content: string}> = []
+  ): string {
+    let prompt = `You are a cybersecurity expert assistant specializing in vulnerability analysis and remediation.
+
+Context:`;
+
+    if (vulnerability) {
+      prompt += `
+Vulnerability Details:
+- CVE: ${vulnerability.cve || 'Not specified'}
+- Package: ${vulnerability.package || 'Not specified'}  
+- Severity: ${vulnerability.severity}
+- Description: ${vulnerability.description || 'Not provided'}
+- Affected Versions: ${vulnerability.affectedVersions?.join(', ') || 'Not specified'}
+- Patched Versions: ${vulnerability.patchedVersions?.join(', ') || 'Not specified'}`;
+    }
+
+    if (history.length > 0) {
+      prompt += `\n\nConversation History:`;
+      history.slice(-5).forEach(msg => { // Keep last 5 messages for context
+        prompt += `\n${msg.role}: ${msg.content}`;
+      });
+    }
+
+    prompt += `\n\nUser Question: ${message}
+
+Please provide:
+1. A clear, actionable response
+2. Specific remediation steps if applicable
+3. Risk assessment
+4. Follow-up questions to help the user
+
+Respond in JSON format:
+{
+  "response": "detailed response",
+  "confidence": 0.8,
+  "suggestions": [...],
+  "followUpQuestions": [...]
+}`;
+
+    return prompt;
+  }
+
+  private async queryOpenAI(prompt: string): Promise<AIResponse | null> {
+    try {
+      const completion = await this.openai!.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }],
+        temperature: 0.3, // Lower temperature for more consistent security advice
+        max_tokens: 1000
+      });
+
+      const content = completion.choices[0]?.message?.content;
+      if (!content) return null;
+
+      try {
+        const parsed = JSON.parse(content);
+        return {
+          response: parsed.response,
+          confidence: parsed.confidence || 0.7,
+          suggestions: parsed.suggestions || [],
+          followUpQuestions: parsed.followUpQuestions || []
+        };
+      } catch {
+        // If JSON parsing fails, return the raw response
+        return {
+          response: content,
+          confidence: 0.6,
+          suggestions: [],
+          followUpQuestions: []
+        };
+      }
+    } catch (error) {
+      console.error('OpenAI query failed:', error);
+      return null;
+    }
+  }
+
+  private async queryGemini(prompt: string): Promise<AIResponse | null> {
+    try {
+      const model = this.genAI!.getGenerativeModel({ model: "gemini-pro" });
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+
+      if (!text) return null;
+
+      try {
+        const parsed = JSON.parse(text);
+        return {
+          response: parsed.response,
+          confidence: parsed.confidence || 0.7,
+          suggestions: parsed.suggestions || [],
+          followUpQuestions: parsed.followUpQuestions || []
+        };
+      } catch {
+        return {
+          response: text,
+          confidence: 0.6,
+          suggestions: [],
+          followUpQuestions: []
+        };
+      }
+    } catch (error) {
+      console.error('Gemini query failed:', error);
+      return null;
+    }
+  }
+
+  private generateFallbackResponse(message: string, vulnerability?: VulnerabilityContext): AIResponse {
+    const lowerMessage = message.toLowerCase();
+    
+    let response = '';
+    let confidence = 0.4;
+    
+    if (lowerMessage.includes('remediation') || lowerMessage.includes('fix')) {
+      response = this.fallbackResponses.get('remediation_general')!;
+    } else if (lowerMessage.includes('best practice')) {
+      response = this.fallbackResponses.get('best_practices')!;
+    } else if (vulnerability) {
+      response = `For the ${vulnerability.severity} severity vulnerability in ${vulnerability.package || 'the specified package'}, ` +
+                this.fallbackResponses.get('vulnerability_analysis')!;
+    } else {
+      response = 'I\'m currently unable to provide detailed analysis. Please ensure your question is specific and try again, or contact support if the issue persists.';
+    }
+
+    return {
+      response,
+      confidence,
+      suggestions: [],
+      followUpQuestions: [
+        "Would you like me to explain the remediation steps in more detail?",
+        "Do you need help understanding the security impact?",
+        "Would you like best practices for preventing similar vulnerabilities?"
+      ]
+    };
+  }
+
+  async storeRemediationSuggestion(suggestion: RemediationSuggestion): Promise<boolean> {
+    try {
+      await db.insert(aiRemediationSuggestions).values({
+        vulnerabilityType: suggestion.vulnerabilityType,
+        suggestedFix: suggestion.suggestedFix,
+        codeExample: suggestion.codeExample,
+        confidence: suggestion.confidence.toString(),
+        automationLevel: suggestion.automationLevel,
+        isImplemented: false,
+        createdAt: new Date()
+      });
+      return true;
+    } catch (error) {
+      console.error('Error storing remediation suggestion:', error);
+      return false;
+    }
+  }
+}
+
+// Export singleton instance
+export const aiSecurityEngine = new AISecurityEngine();
+
+// Types
+interface RemediationSuggestion {
+  vulnerabilityType: string;
+  suggestedFix: string;
+  codeExample?: string;
+  confidence: number;
+  automationLevel: 'manual' | 'semi-automated' | 'automated';
+}

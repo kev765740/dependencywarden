@@ -1,0 +1,74 @@
+ YOU ARE NOW THE PROJECT LEAD FOR DEPENDENCYWARDEN.
+Your task is to systematically implement all fixes from the uploaded checklists to make the application production-ready. Prioritize critical security issues , error handling , accessibility , and performance before addressing lower-priority items.
+
+🔍 STEP 1: FULL STATUS CHECK
+Audit the current codebase against the following checklists:
+Security vulnerabilities (localStorage → secure storage, input sanitization, CSRF)
+Error boundaries (global vs. component-specific)
+Accessibility (WCAG 2.1 AA compliance, ARIA labels, keyboard navigation)
+TypeScript compilation errors
+Lazy loading and bundle optimization
+Generate a prioritized task list based on the uploaded checklists. Include:
+Critical issues (e.g., security, TypeScript errors)
+High-priority fixes (error handling, accessibility)
+Medium/low-priority improvements (testing, documentation)
+🛠️ STEP 2: IMPLEMENT FIXES BY CATEGORY
+1. SECURITY HARDENING (CRITICAL)
+Replace localStorage with secure token storage (use httpOnly cookies or secureStorage.ts).
+Add input sanitization using DOMPurify and regex validation.
+Implement CSRF protection for API requests.
+Validate environment variables (create .env files and envValidator.ts).
+Fix hardcoded secrets in components (e.g., IntegrationStatus.tsx).
+2. ERROR HANDLING & RESILIENCE (CRITICAL)
+Add component-specific error boundaries (wrap major components like Dashboard, Modal, Sidebar in <ComponentErrorBoundary>).
+Implement retry logic with exponential backoff for failed API requests.
+Add fallback UIs for loading/error states.
+Integrate Sentry for granular error logging.
+3. PERFORMANCE OPTIMIZATION (CRITICAL)
+Replace hardcoded imports with lazy loading for routes (use React.lazy + Suspense).
+Optimize re-renders with React.memo, useMemo, and useCallback.
+Extract constants/config files to reduce magic numbers.
+Enable tree-shaking and analyze bundle size (source-map-explorer).
+4. ACCESSIBILITY (WCAG 2.1 AA) (CRITICAL)
+Add ARIA labels, roles, and descriptions to all interactive elements.
+Ensure keyboard navigation works across modals, dropdowns, and tables.
+Fix focus management (e.g., trap focus in modals).
+Verify color contrast ratios meet WCAG standards.
+5. TYPE SAFETY & TESTING (HIGH PRIORITY)
+Replace any types with strict TypeScript interfaces.
+Add runtime validation for API responses (use Zod or Yup).
+Write unit tests for core logic (e.g., use-auth.tsx, queryClient.ts).
+Add test IDs for E2E testing.
+6. CODE QUALITY & DOCUMENTATION (MEDIUM PRIORITY)
+Extract reusable utilities (e.g., constants.ts, themeUtils.ts).
+Add JSDoc comments and Storybook documentation.
+Enforce consistent naming conventions and code style.
+📋 STEP 3: VERIFY FIXES AGAINST CHECKLISTS
+For each fix, provide:
+
+File path edited (e.g., client/src/lib/secureStorage.ts)
+Code snippet showing the change
+Checklist alignment (e.g., "Fixes: Security Checklist #1")
+Verification status (✅ Resolved / ❌ Pending)
+🔄 STEP 4: FINAL VALIDATION & REPORT
+Run npm run build to confirm no TypeScript errors.
+Test routing, lazy loading, and error boundaries manually.
+Generate a production readiness report with:
+✅ Passed categories (security, accessibility, etc.)
+🚫 Remaining issues
+📈 Final recommendation (Deploy / Do Not Deploy)
+Take screenshots only for major milestones (e.g., successful build, fixed accessibility).
+⚠️ RULES FOR AGENT
+DO NOT CLAIM COMPLETION until all critical issues are resolved.
+Prioritize concrete code changes over vague suggestions.
+Fix TypeScript errors before implementing new features.
+Use tools/libs mentioned in checklists (e.g., Zod, React Query, Sentry).
+Document every change with file paths and code snippets.
+✅ SUCCESS CRITERIA
+All security vulnerabilities patched
+Zero TypeScript compilation errors
+WCAG 2.1 AA compliance
+Component-specific error boundaries implemented
+Lazy loading functional for non-critical routes
+Comprehensive test coverage (>80%)
+Let me know your findings and begin fixing the outstanding issues now.
